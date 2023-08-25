@@ -1,5 +1,5 @@
-import { GlobalStateType } from './types/globalState'
-import { ActionKind, GlobalStateActions } from './types/actions'
+import { GlobalStateType } from './types/globalState.d'
+import { ActionKind, GlobalStateActions } from './types/actions.d'
 
 const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
   if (action.type === ActionKind.TOGGLE_THEME) {
@@ -8,7 +8,13 @@ const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
       darkTheme: action.payload.darkTheme,
     }
   }
-  throw new Error(`no such action : ${action.type}`)
+  if (action.type === ActionKind.SET_USER) {
+    return {
+      ...state,
+      user: action.payload.user,
+    }
+  }
+  return state
 }
 
 export default reducer

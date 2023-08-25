@@ -4,7 +4,7 @@ import React from 'react'
 import { gql, useQuery } from '@apollo/client'
 import Loader from './Loader'
 import RestaurantCard from './RestaurantCard'
-import { RestaurantDataType } from '@/types/data/Restaurant'
+import { RestaurantDataType } from '@/types/data/Restaurant.d'
 
 const QUERY = gql`
   {

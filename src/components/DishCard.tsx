@@ -1,4 +1,4 @@
-import { DishDataType, RestaurantDataType } from '@/types/data/Restaurant'
+import { DishDataType } from '@/types/data/Restaurant.d'
 import Image from 'next/image'
 import React from 'react'
 

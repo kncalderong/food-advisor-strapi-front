@@ -1,4 +1,4 @@
-'use-client'
+'use client'
 
 import { useAppContext } from '@/context/appContext'
 import Link from 'next/link'
@@ -19,7 +19,7 @@ const Header = () => {
       <div className='flex justify-between items-center w-full'>
         <div className='xl:w-1/3'>
           <Link
-            className='block text-lg max-w-max ext-coolGray-500 hover:text-coolGray-900 font-medium'
+            className='block text-lg max-w-max text-coolGray-500 hover:text-coolGray-900 font-medium'
             href='/'
           >
             Food Order App
@@ -37,7 +37,7 @@ const Header = () => {
             <div className='hxl:block'>
               {user ? (
                 <div className='flex items-center justify-end'>
-                  <span className='inline-block py-2 px-4 mr-2 leading-5 text-gray-50  hover:text-gray-100 bg-transparent font-medium rounded-md'>
+                  <span className='inline-block py-2 px-4 mr-2 leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium rounded-md'>
                     {user.username}
                   </span>
                   <button
@@ -50,7 +50,7 @@ const Header = () => {
               ) : (
                 <div className='flex items-center justify-end'>
                   <Link
-                    className='inline-block py-2 px-4 mr-2 leading-5 text-gray-50  hover:text-yellow-200 font-bold bg-transparent rounded-md'
+                    className='inline-block py-2 px-4 mr-2 leading-5 text-coolGray-500 hover:text-coolGray-900 font-bold bg-transparent rounded-md'
                     href='/login'
                   >
                     Log In

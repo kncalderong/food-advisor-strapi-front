@@ -12,6 +12,7 @@ interface ContextValueType extends GlobalStateType {
   //type for values passed by context
   toggleTheme: () => void
   setupUser: (userData: any) => void
+  logoutUser: () => void
 }
 
 const initialState: GlobalStateType = {
@@ -36,9 +37,16 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   const setupUser = (userData: any) => {
+    Cookie.remove('token')
     dispatch({
       type: ActionKind.SET_USER,
       payload: userData,
+    })
+  }
+
+  const logoutUser = () => {
+    dispatch({
+      type: ActionKind.LOGOUT_USER,
     })
   }
 
@@ -81,6 +89,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         ...state,
         toggleTheme,
         setupUser,
+        logoutUser,
       }}
     >
       {children}

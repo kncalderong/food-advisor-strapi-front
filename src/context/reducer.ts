@@ -14,6 +14,12 @@ const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
       user: action.payload.user,
     }
   }
+  if (action.type === ActionKind.LOGOUT_USER) {
+    return {
+      ...state,
+      user: null,
+    }
+  }
   return state
 }
 

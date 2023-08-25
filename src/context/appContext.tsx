@@ -7,11 +7,12 @@ import { GlobalStateType } from './types/globalState.d'
 import Cookie from 'js-cookie'
 import { gql } from '@apollo/client'
 import { client } from './apolloClient'
+import { UserType } from '@/types/data/User.d'
 
 interface ContextValueType extends GlobalStateType {
   //type for values passed by context
   toggleTheme: () => void
-  setupUser: (userData: any) => void
+  setupUser: (userData: UserType) => void
   logoutUser: () => void
 }
 
@@ -36,15 +37,15 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     fetchData()
   }, [])
 
-  const setupUser = (userData: any) => {
-    Cookie.remove('token')
+  const setupUser = (userData: UserType) => {
     dispatch({
       type: ActionKind.SET_USER,
-      payload: userData,
+      payload: { user: userData },
     })
   }
 
   const logoutUser = () => {
+    Cookie.remove('token')
     dispatch({
       type: ActionKind.LOGOUT_USER,
     })

@@ -14,7 +14,7 @@ const Form = ({
   buttonText: string
   formData: FormDataType
   setFormData: React.Dispatch<FormDataType>
-  callback: () => void
+  callback: (e: React.FormEvent<HTMLFormElement>) => void
   error: ApolloError | undefined
 }) => {
   return (

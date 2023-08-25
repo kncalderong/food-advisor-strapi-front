@@ -17,6 +17,7 @@ const REGISTER_MUTATION = gql`
       jwt
       user {
         username
+        id
         email
       }
     }
@@ -33,12 +34,12 @@ const Register = () => {
   })
   const [registerMutation, { loading, error }] = useMutation(REGISTER_MUTATION)
 
-  const handleRegister = async () => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const { email, password } = formData
     const { data } = await registerMutation({
       variables: { username: email, email: email, password },
     })
-    console.log('data on register page: ', data)
     if (data?.register.user) {
       setupUser(data.register.user)
       router.push('/')

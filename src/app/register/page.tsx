@@ -24,7 +24,7 @@ const REGISTER_MUTATION = gql`
   }
 `
 
-const Register = () => {
+const Page = () => {
   const router = useRouter()
   const { setupUser } = useAppContext()
 
@@ -61,4 +61,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Page

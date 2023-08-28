@@ -142,7 +142,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   //"me" is to query with a JWT if a user is already logged in
-  const getUser = async () => {
+  const getUser: any = async () => {
     const token = Cookie.get('token')
     if (!token) return null
     const { data } = await client.query({

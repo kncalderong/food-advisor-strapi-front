@@ -1,5 +1,6 @@
 import { GlobalStateType } from './types/globalState.d'
 import { ActionKind, GlobalStateActions } from './types/actions.d'
+import Cookie from 'js-cookie'
 
 const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
   if (action.type === ActionKind.TOGGLE_THEME) {
@@ -31,6 +32,7 @@ const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
       items: [...state.cart.items, action.payload.itemData],
       total: state.cart.total + action.payload.itemData.attributes.price,
     }
+    Cookie.set('cart', JSON.stringify(newCart))
     return {
       ...state,
       cart: newCart,
@@ -46,6 +48,7 @@ const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
         ),
         total: state.cart.total + action.payload.itemData.attributes.price,
       }
+      Cookie.set('cart', JSON.stringify(newCart))
       return {
         ...state,
         cart: newCart,
@@ -60,6 +63,7 @@ const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
         ),
         total: state.cart.total - action.payload.itemData.attributes.price,
       }
+      Cookie.set('cart', JSON.stringify(newCart))
       return {
         ...state,
         cart: newCart,
@@ -73,18 +77,21 @@ const reducer = (state: GlobalStateType, action: GlobalStateActions) => {
       ),
       total: state.cart.total - action.payload.itemData.attributes.price,
     }
+    Cookie.set('cart', JSON.stringify(newCart))
     return {
       ...state,
       cart: newCart,
     }
   }
   if (action.type === ActionKind.RESET_CART) {
+    const newCart = {
+      items: [],
+      total: 0,
+    }
+    Cookie.set('cart', JSON.stringify(newCart))
     return {
       ...state,
-      cart: {
-        items: [],
-        total: 0,
-      },
+      cart: newCart,
     }
   }
   if (action.type === ActionKind.TOGGLE_CART) {

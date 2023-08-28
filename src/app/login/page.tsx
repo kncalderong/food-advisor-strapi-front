@@ -21,7 +21,7 @@ const LOGIN_MUTATION = gql`
   }
 `
 
-const Login = () => {
+const Page = () => {
   const router = useRouter()
   const { setupUser } = useAppContext()
 
@@ -55,4 +55,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Page

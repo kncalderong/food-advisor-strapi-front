@@ -43,9 +43,9 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   if (error) return 'Error Loading Dishes'
   if (loading) return <Loader />
+
   if (data.restaurant.data.attributes.dishes.data.length) {
     const { restaurant } = data
-
     return (
       <div className='py-6'>
         <h1 className='text-4xl font-bold text-green-600'>

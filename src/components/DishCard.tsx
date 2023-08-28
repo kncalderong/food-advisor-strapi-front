@@ -1,10 +1,14 @@
+import { useAppContext } from '@/context/appContext'
 import { DishDataType } from '@/types/data/Restaurant.d'
 import Image from 'next/image'
 import React from 'react'
 
 const DishCard = ({ data }: { data: DishDataType }) => {
+  const { addItem, toggleShowCart } = useAppContext()
+
   function handleAddItem() {
-    // will add some logic here
+    addItem(data)
+    toggleShowCart(true)
   }
 
   return (
@@ -17,6 +21,7 @@ const DishCard = ({ data }: { data: DishDataType }) => {
           src={`${process.env.STRAPI_URL || 'http://127.0.0.1:1337'}${
             data.attributes.image.data.attributes.url
           }`}
+          sizes='33vw'
           alt=''
         />
         <div className='p-8'>

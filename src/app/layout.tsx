@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { AppApolloProvider } from '@/context/apolloClient'
 import { AppProvider } from '@/context/appContext'
+import Cart from '@/components/Cart/Cart'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <AppApolloProvider>
           <AppProvider>
             <Header />
+            <Cart />
             {children}
           </AppProvider>
         </AppApolloProvider>

@@ -8,15 +8,15 @@ import Cookie from 'js-cookie'
 import { gql } from '@apollo/client'
 import { client } from './apolloClient'
 import { UserType } from '@/types/data/User.d'
-import { ItemDataType } from '@/types/data/Restaurant'
+import { DishDataType, ItemDataType } from '@/types/data/Restaurant'
 
 interface ContextValueType extends GlobalStateType {
   //type for values passed by context
   toggleTheme: () => void
   setupUser: (userData: UserType) => void
   logoutUser: () => void
-  addItem: (item: any) => void
-  removeItem: (item: any) => void
+  addItem: (item: DishDataType) => void
+  removeItem: (item: DishDataType) => void
   resetCart: () => void
   toggleShowCart: (showCart: boolean) => void
 }
@@ -56,7 +56,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [])
 
-  const addItem = (item: any) => {
+  const addItem = (item: DishDataType) => {
     let newItem: ItemDataType | undefined = state.cart.items.find(
       (i: ItemDataType) => i.id === item.id
     )
@@ -74,13 +74,13 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         type: ActionKind.UPDATE_ITEM_CART,
         payload: {
           method: 'add',
-          itemData: item,
+          itemData: { ...item, quantity: 1 },
         },
       })
     }
   }
 
-  const removeItem = (item: any) => {
+  const removeItem = (item: DishDataType) => {
     let newItem: ItemDataType | undefined = state.cart.items.find(
       (i: ItemDataType) => i.id === item.id
     )
@@ -89,14 +89,14 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         type: ActionKind.UPDATE_ITEM_CART,
         payload: {
           method: 'remove',
-          itemData: item,
+          itemData: { ...item, quantity: 1 },
         },
       })
     } else {
       dispatch({
         type: ActionKind.DELETE_ITEM_CART,
         payload: {
-          itemData: item,
+          itemData: { ...item, quantity: 1 },
         },
       })
     }

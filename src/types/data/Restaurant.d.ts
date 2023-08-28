@@ -31,3 +31,12 @@ export interface DishDataType {
     }
   }
 }
+
+export interface CartDataType {
+  items: ItemDataType[]
+  total: number
+}
+
+export interface ItemDataType extends DishDataType {
+  quantity: number
+}
